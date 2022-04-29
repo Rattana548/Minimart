@@ -3,6 +3,7 @@ const path = require('path');
 const cookieSession = require('cookie-session');
 const bcrypt = require('bcrypt');
 const dbConnection = require('./database');
+const con = require('./database2');
 const { body, validationResult } = require('express-validator');
 
 const app = express();
@@ -22,7 +23,7 @@ app.use(cookieSession({
 // DECLARING CUSTOM MIDDLEWARE
 const ifNotLoggedin = (req, res, next) => {
     if(!req.session.isLoggedIn){
-        return res.render('login-register');
+        return res.render('login');
     }
     next();
 }
@@ -33,6 +34,24 @@ const ifLoggedin = (req,res,next) => {
     next();
 }
 // END OF CUSTOM MIDDLEWARE
+
+app.get('/login', (req, res, next) => {
+    return res.render('login');
+})
+
+app.get('/register', (req, res, next) => {
+    return res.render('register');
+})
+
+app.get("/showproduct", (req, res) => {
+    con.query("SELECT * FROM mn_product", (err, result) => {
+        if (err) return res.status(200).send(err);
+        else return res.status(200).send(result);
+    })
+
+})
+
+
 // ROOT PAGE
 app.get('/', ifNotLoggedin, (req,res,next) => {
     dbConnection.execute("SELECT `name` FROM `users` WHERE `id`=?",[req.session.userID])
@@ -59,18 +78,19 @@ app.post('/register', ifLoggedin,
         });
     }),
     body('user_name','Username is Empty!').trim().not().isEmpty(),
+    body('user_phone','Username is Empty!').trim().not().isEmpty(),
     body('user_pass','The password must be of minimum length 6 characters').trim().isLength({ min: 6 }),
 ],// end of post data validation
 (req,res,next) => {
 
     const validation_result = validationResult(req);
-    const {user_name, user_pass, user_email} = req.body;
+    const {user_name, user_pass, user_email,user_phone} = req.body;
     // IF validation_result HAS NO ERROR
     if(validation_result.isEmpty()){
         // password encryption (using bcryptjs)
         bcrypt.hash(user_pass, 12).then((hash_pass) => {
             // INSERTING USER INTO DATABASE
-            dbConnection.execute("INSERT INTO `users`(`name`,`email`,`password`) VALUES(?,?,?)",[user_name,user_email, hash_pass])
+            dbConnection.execute("INSERT INTO `users`(`name`,`email`,`phone`,`password`) VALUES(?,?,?,?)",[user_name,user_email,user_phone, hash_pass])
             .then(result => {
                 res.send(`your account has been created successfully, Now you can <a href="/">Login</a>`);
             }).catch(err => {
@@ -89,12 +109,15 @@ app.post('/register', ifLoggedin,
             return error.msg;
         });
         // REDERING login-register PAGE WITH VALIDATION ERRORS
-        res.render('login-register',{
+        res.render('register',{
             register_error:allErrors,
             old_data:req.body
         });
     }
 });// END OF REGISTER PAGE
+
+
+
 
 
 // LOGIN PAGE
@@ -111,7 +134,7 @@ app.post('/', ifLoggedin, [
         });
     }),
     body('user_pass','Password is empty!').trim().not().isEmpty(),
-], (req, res) => {
+],(req, res) => {
     const validation_result = validationResult(req);
     const {user_pass, user_email} = req.body;
     if(validation_result.isEmpty()){
@@ -122,11 +145,10 @@ app.post('/', ifLoggedin, [
                 if(compare_result === true){
                     req.session.isLoggedIn = true;
                     req.session.userID = rows[0].id;
-
                     res.redirect('/');
                 }
                 else{
-                    res.render('login-register',{
+                    res.render('login',{
                         login_errors:['Invalid Password!']
                     });
                 }
@@ -145,7 +167,7 @@ app.post('/', ifLoggedin, [
             return error.msg;
         });
         // REDERING login-register PAGE WITH LOGIN VALIDATION ERRORS
-        res.render('login-register',{
+        res.render('login',{
             login_errors:allErrors
         });
     }

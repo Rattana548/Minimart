@@ -1,21 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
-    <!-- BOOTSTRAP CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <%- include('./css/style'); %>
+        <%- include('./css/css'); %>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+                integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+                crossorigin="anonymous">
+            <title>Document</title>
 </head>
+
 <body>
-    <div class="container p-5">
-        <div class="card">
-            <div class="card-body">
-                    <h1>Hello, <%= name %></h1>
-                    <a href="/logout" class="btn btn-danger">Logout</a>
+
+
+    <div class="navigation">
+        <nav class="navbar navbar-expand bg-green mt">
+            <div class="container">
+                <a href="" class="l text-decoration colorFFF">Mini Market</a>
+            </div>
+            <ul class="navbar-nav ml-auto">
+                </li>
+                <li class="nav-item">
+                    <a href="profile" class="nav-link colorFFF">
+                        <%= name %>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link colorFFF">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="Cart" class="nav-link colorFFF">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a href="logout" class="nav-link colorFFF">Logout</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-3">
+                <div class="hero__categories my-3">
+                    <div class="hero__categories__all bg-green">
+                        <span class="colorFFF">All departments</span>
+                    </div>
+                    <ul>
+                        <li class="colorFFF"><a href="" class="text-decoration color000">Food</a></li>
+                        <li class="colorFFF"><a href="" class="text-decoration color000">Drinks</a></li>
+                        <li class="colorFFF"><a href="" class="text-decoration color000">School supplies</a></li>
+                        <li class="colorFFF"><a href="" class="text-decoration color000">Personal items</a></li>
+                        <li class="colorFFF"><a href="" class="text-decoration color000">Miscellaneous goods</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="hero__categories my-4">
+                    <div class="hero__categories__all bg-green">
+                        <span class="colorFFF">Choice</span>
+                    </div>
+
+                    <li class="useul">
+
+                        <div class="wrapper">
+                            <header>
+                                <h2>Price Range</h2>
+                                <p>Use slider or enter min and max price</p>
+                            </header>
+                            <div class="price-input">
+                                <div class="field">
+                                    <span>Min</span>
+                                    <input type="number" class="input-min" />
+                                </div>
+                                <div class="separator">-</div>
+                                <div class="field">
+                                    <span>Max</span>
+                                    <input type="number" class="input-max" />
+                                </div>
+                            </div>
+                            <div class="slider">
+                                <div class="progress"></div>
+                            </div>
+                            <div class="range-input">
+                                <input type="range" class="range-min" min="0" max="10000" value="500" step="100" />
+                                <input type="range" class="range-max" min="0" max="10000" value="1000" step="100" />
+                            </div>
+                        </div>
+
+                    </li>
+                </div>
+            </div>
+            <div class="col-lg-9 my-4">
+
+                <div class="hero__item set-bg imagebanner">
+                    <div class="hero__text">
+                        <span class="colorgreen">Mini Mart</span>
+                        <h2 class="color000">FRESH <br />100% Organic</h2>
+                        <p>Product on sela dirly on bottom</p>
+                        <a href="#" class="btn btn-success">SHOP NOW</a>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="titall">
+                        <h2>Dirl sela!</h2>
+                    </div>
+
+                    <div class="col my-5 action on">
+                        <div class="item">
+                            <div class="item-item">
+                                <span>This is a product</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col my-5 action">
+                        <div class="item">
+                            <div class="item-item">
+                                <span>This is a product</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col my-5 action">
+                        <div class="item">
+                            <div class="item-item">
+                                <span>This is a product</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="tital">
+                    <h2>Author Product</h2>
+                </div>
+                <div class="minitital">
+                    <ul>
+                        <li /*onClick={Show(e.target.value)} value={"All"}* />All</li>
+                        <li /*onClick={Show(e.target.value)} value={"Food"} * />Food</li>
+                        <li /*onClick={Show(e.target.value)} value={"Drinks"} * />Drinks</li>
+                        <li /*onClick={Show(e.target.value)} value={"Schoolsupplies"} * />School supplies</li>
+                        <li /*onClick={Show(e.target.value)} value={"Personalitems"} * />Personal items</li>
+                        <li /*onClick={Show(e.target.value)} value={"Miscellaneousgoods"} * />Miscellaneous goods
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-sm">
+        <div class="row row-cols-4 height290" id="detail">
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        let show = document.querySelector("#detail")
+        fetch('http://localhost:3000/showproduct')
+            .then(response => response.json())
+            .then(data => {
+                for (let i = 0; i < data.length; i++) {
+                    show.innerHTML += `<div class="col my-5"><div class="iteme">
+                </div><div class="detail"><p class="span">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></p></div></div>`
+
+                }
+
+            })
+            .catch(error => console.error(error));
+    </script>
+
+
+
 </body>
+
 </html>
