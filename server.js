@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 const dbConnection = require('./database');
 const con = require('./database2');
 const { body, validationResult } = require('express-validator');
-
 const app = express();
 app.use(express.urlencoded({extended:false}));
 
@@ -33,6 +32,10 @@ const ifLoggedin = (req,res,next) => {
     }
     next();
 }
+
+
+
+
 // END OF CUSTOM MIDDLEWARE
 
 app.get('/login', (req, res, next) => {
@@ -43,7 +46,55 @@ app.get('/register', (req, res, next) => {
     return res.render('register');
 })
 
-app.get("/showproduct", (req, res) => {
+app.get("/showproductall", (req, res) => {
+    con.query("SELECT * FROM mn_product", (err, result) => {
+        if (err) return res.status(200).send(err);
+        else return res.status(200).send(result);
+    })
+
+})
+app.get("/showproduct1", (req, res) => {
+    con.query("SELECT * FROM mn_product WHERE Type_id = '1'", (err, result) => {
+        if (err) return res.status(200).send(err);
+        else return res.status(200).send(result);
+    })
+
+})
+app.get("/showproduct2", (req, res) => {
+    con.query("SELECT * FROM mn_product WHERE Type_id = '2'", (err, result) => {
+        if (err) return res.status(200).send(err);
+        else return res.status(200).send(result);
+    })
+
+})
+app.get("/showproduct3", (req, res) => {
+    con.query("SELECT * FROM mn_product WHERE Type_id = '3'", (err, result) => {
+        if (err) return res.status(200).send(err);
+        else return res.status(200).send(result);
+    })
+
+})
+app.get("/showproduct4", (req, res) => {
+    con.query("SELECT * FROM mn_product WHERE Type_id = '4'", (err, result) => {
+        if (err) return res.status(200).send(err);
+        else return res.status(200).send(result);
+    })
+
+})
+
+app.get("/showproduct5", (req, res) => {
+    con.query("SELECT * FROM mn_product WHERE Type_id = '5'", (err, result) => {
+        if (err) return res.status(200).send(err);
+        else return res.status(200).send(result);
+    })
+
+})
+
+
+
+
+
+app.get("/showproductall", (req, res) => {
     con.query("SELECT * FROM mn_product", (err, result) => {
         if (err) return res.status(200).send(err);
         else return res.status(200).send(result);
@@ -51,6 +102,18 @@ app.get("/showproduct", (req, res) => {
 
 })
 
+app.get('/cart',ifNotLoggedin, (req, res, next)=>{
+    dbConnection.execute("SELECT `name` FROM `users` WHERE `id`=?",[req.session.userID])
+    .then(([rows]) => {
+        res.render('cart',{
+            name:rows[0].name
+        });
+    });
+})
+
+app.get('/login',(req, res, next)=>{
+    res.redirect('/')
+})
 
 // ROOT PAGE
 app.get('/', ifNotLoggedin, (req,res,next) => {
@@ -115,7 +178,6 @@ app.post('/register', ifLoggedin,
         });
     }
 });// END OF REGISTER PAGE
-
 
 
 
@@ -187,5 +249,4 @@ app.use('/', (req,res) => {
 });
 
 
-
-app.listen(3000, () => console.log("Server is Running..."));
+app.listen(11243, () => console.log("Server is Running..."));

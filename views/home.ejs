@@ -13,165 +13,324 @@
 
 <body>
 
+    <%- include('Navtologin')%>
 
-    <div class="navigation">
-        <nav class="navbar navbar-expand bg-green mt">
-            <div class="container">
-                <a href="" class="l text-decoration colorFFF">Mini Market</a>
-            </div>
-            <ul class="navbar-nav ml-auto">
-                </li>
-                <li class="nav-item">
-                    <a href="profile" class="nav-link colorFFF">
-                        <%= name %>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link colorFFF">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="Cart" class="nav-link colorFFF">Cart</a>
-                </li>
-                <li class="nav-item">
-                    <a href="logout" class="nav-link colorFFF">Logout</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
 
-    <div class="container">
-        <div class="row">
+        <div class="container">
+            <div class="row">
 
-            <div class="col-lg-3">
-                <div class="hero__categories my-3">
-                    <div class="hero__categories__all bg-green">
-                        <span class="colorFFF">All departments</span>
+                <div class="col-lg-3">
+                    <div class="hero__categories my-3">
+                        <div class="hero__categories__all">
+                            <span>All departments</span>
+                        </div>
+                        <ul>
+                            <div class="btn-group-vertical" role="group" aria-label="Basic radio toggle button group">
+
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
+                                    onclick="showproductistype('All')" checked>
+                                <label class="btn-outline-primary" for="btnradio1">All</label>
+
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
+                                    onclick="showproductistype('dry food')">
+                                <label class="btn-outline-primary" for="btnradio2">Dry food</label>
+
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
+                                    onclick="showproductistype('Fresh food')">
+                                <label class="btn-outline-primary" for="btnradio3">Fresh food</label>
+
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off"
+                                    onclick="showproductistype('Drink')">
+                                <label class="btn-outline-primary" for="btnradio4">Drink</label>
+
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off"
+                                    onclick="showproductistype('personal items')">
+                                <label class="btn-outline-primary" for="btnradio5">Personal items</label>
+
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off"
+                                    onclick="showproductistype('General use')">
+                                <label class="btn-outline-primary" for="btnradio6">General use</label>
+
+                            </div>
+
+                        </ul>
                     </div>
-                    <ul>
-                        <li class="colorFFF"><a href="" class="text-decoration color000">Food</a></li>
-                        <li class="colorFFF"><a href="" class="text-decoration color000">Drinks</a></li>
-                        <li class="colorFFF"><a href="" class="text-decoration color000">School supplies</a></li>
-                        <li class="colorFFF"><a href="" class="text-decoration color000">Personal items</a></li>
-                        <li class="colorFFF"><a href="" class="text-decoration color000">Miscellaneous goods</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="hero__categories my-4">
-                    <div class="hero__categories__all bg-green">
-                        <span class="colorFFF">Choice</span>
-                    </div>
+                    <div class="hero__categories my-4">
+                        <div class="hero__categories__all bg-green">
+                            <span>Choice</span>
+                        </div>
 
-                    <li class="useul">
+                        <li class="useul">
 
-                        <div class="wrapper">
-                            <header>
-                                <h2>Price Range</h2>
-                                <p>Use slider or enter min and max price</p>
-                            </header>
-                            <div class="price-input">
-                                <div class="field">
-                                    <span>Min</span>
-                                    <input type="number" class="input-min" />
+                            <div class="wrapper">
+                                <header>
+                                    <h2>Price Range</h2>
+                                    <p>Use slider or enter min and max price</p>
+                                </header>
+                                <div class="price-input">
+                                    <div class="field">
+                                        <span>Min</span>
+                                        <input type="number" class="input-min" />
+                                    </div>
+                                    <div class="separator">-</div>
+                                    <div class="field">
+                                        <span>Max</span>
+                                        <input type="number" class="input-max" />
+                                    </div>
                                 </div>
-                                <div class="separator">-</div>
-                                <div class="field">
-                                    <span>Max</span>
-                                    <input type="number" class="input-max" />
+                                <div class="slider">
+                                    <div class="progress"></div>
+                                </div>
+                                <div class="range-input">
+                                    <input type="range" class="range-min" min="0" max="10000" value="500" step="100" />
+                                    <input type="range" class="range-max" min="0" max="10000" value="1000" step="100" />
                                 </div>
                             </div>
-                            <div class="slider">
-                                <div class="progress"></div>
-                            </div>
-                            <div class="range-input">
-                                <input type="range" class="range-min" min="0" max="10000" value="500" step="100" />
-                                <input type="range" class="range-max" min="0" max="10000" value="1000" step="100" />
-                            </div>
-                        </div>
 
-                    </li>
-                </div>
-            </div>
-            <div class="col-lg-9 my-4">
-
-                <div class="hero__item set-bg imagebanner">
-                    <div class="hero__text">
-                        <span class="colorgreen">Mini Mart</span>
-                        <h2 class="color000">FRESH <br />100% Organic</h2>
-                        <p>Product on sela dirly on bottom</p>
-                        <a href="#" class="btn btn-success">SHOP NOW</a>
-                    </div>
-                </div>
-                <div class="row">
-
-                    <div class="titall">
-                        <h2>Dirl sela!</h2>
-                    </div>
-
-                    <div class="col my-5 action on">
-                        <div class="item">
-                            <div class="item-item">
-                                <span>This is a product</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col my-5 action">
-                        <div class="item">
-                            <div class="item-item">
-                                <span>This is a product</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col my-5 action">
-                        <div class="item">
-                            <div class="item-item">
-                                <span>This is a product</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="tital">
-                    <h2>Author Product</h2>
-                </div>
-                <div class="minitital">
-                    <ul>
-                        <li /*onClick={Show(e.target.value)} value={"All"}* />All</li>
-                        <li /*onClick={Show(e.target.value)} value={"Food"} * />Food</li>
-                        <li /*onClick={Show(e.target.value)} value={"Drinks"} * />Drinks</li>
-                        <li /*onClick={Show(e.target.value)} value={"Schoolsupplies"} * />School supplies</li>
-                        <li /*onClick={Show(e.target.value)} value={"Personalitems"} * />Personal items</li>
-                        <li /*onClick={Show(e.target.value)} value={"Miscellaneousgoods"} * />Miscellaneous goods
                         </li>
-                    </ul>
+                    </div>
+                </div>
+                <div class="col-lg-9 my-4">
+
+                    <div class="hero__item set-bg imagebanner">
+                        <div class="hero__text">
+                            <span>Mini Mart</span>
+                            <h2>FRESH <br />100% Organic</h2>
+                            <p>Product on sela Daily on bottom</p>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="titall">
+                            <h2>Daily sale!</h2>
+                        </div>
+                    </div>
+
+                    <div class="container-sm my-5">
+                        <div class="row row-cols-3 showdirly">
+                        </div>
+                    </div>
+
+                </div>
+
+               
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="tital">
+                        <h2>Author Product</h2>
+                    </div>
+                    <div class="minitital my-5">
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
+                                onclick="showproductistype('All')" checked>
+                            <label class="btn-outline-primary" for="btnradio1">All</label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
+                                onclick="showproductistype('dry food')">
+                            <label class="btn-outline-primary" for="btnradio2">Dry food</label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
+                                onclick="showproductistype('Fresh food')">
+                            <label class="btn-outline-primary" for="btnradio3">Fresh food</label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off"
+                                onclick="showproductistype('Drink')">
+                            <label class="btn-outline-primary" for="btnradio4">Drink</label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off"
+                                onclick="showproductistype('personal items')">
+                            <label class="btn-outline-primary" for="btnradio5">Personal items</label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off"
+                                onclick="showproductistype('General use')">
+                            <label class="btn-outline-primary" for="btnradio6">General use</label>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="container-sm">
-        <div class="row row-cols-4 height290" id="detail">
+        <div class="container-sm">
+            <div class="row row-cols-4 height290" id="detail">
+            </div>
         </div>
-    </div>
 
-    <script type="text/javascript">
-        let show = document.querySelector("#detail")
-        fetch('http://localhost:3000/showproduct')
-            .then(response => response.json())
-            .then(data => {
-                for (let i = 0; i < data.length; i++) {
-                    show.innerHTML += `<div class="col my-5"><div class="iteme">
-                </div><div class="detail"><p class="span">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></p></div></div>`
+        <div id="footer"></div>
+
+        <script>
+
+            let showdirly = document.querySelector(".showdirly")
+            let show = document.querySelector("#detail")
+            let footer = document.querySelector("#footer")
+
+            fetch('http://rattana.app.ruk-com.cloud/showproductall')
+                .then(response => response.json())
+                .then(data => {
+                    for (let i = 0; i < data.length; i++) {
+                        show.innerHTML += `<div class="col my-3"><div class="iteme">
+           </div><div class="detail"><p><a href="cart?${data[i].Id}">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
+
+                    }
+                    for (let y = 0; y < 3; y++) {
+                        var product = (Math.floor(Math.random() * data.length + 1))
+                        showdirly.innerHTML += `
+
+                        <div class="col my-3">
+                            <div class="iteme"></div>
+                            <div class="detail">
+                                <p><a href="cart?${data[product].Id}">${data[product].Name}</a></span></a></p>
+                                </div>
+                            </div>
+                        `
+                    }
+
+                    footer.innerHTML = `<%- include('footer')%>`
+                })
+                .catch(error => console.error(error));
+
+
+
+            function showproductistype(type) {
+                show.innerHTML = "";
+                if (type == "All") {
+                    fetch('http://rattana.app.ruk-com.cloud/showproductall')
+                        .then(response => response.json())
+                        .then(data => {
+                            for (let i = 0; i < data.length; i++) {
+                                show.innerHTML += `<div class="col my-3"><div class="iteme">
+           </div><div class="detail"><p><a href="cart?${data[i].Id}">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
+
+                            }
+
+                        })
+                        .catch(error => console.error(error));
+
+                    footer.innerHTML = `<%- include('footer')%>`
+
+
+
+                } else if (type == "dry food") {
+                    fetch('http://rattana.app.ruk-com.cloud/showproduct1')
+                        .then(response => response.json())
+                        .then(data => {
+                            for (let i = 0; i < data.length; i++) {
+                                show.innerHTML += `<div class="col my-3"><div class="iteme">
+           </div><div class="detail"><p><a href="cart?${data[i].Id}">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
+
+                            }
+
+                        })
+                        .catch(error => console.error(error));
+
+                    footer.innerHTML = `<%- include('footer')%>`
+
+
 
                 }
+                else if (type == "Fresh food") {
+                    fetch('http://rattana.app.ruk-com.cloud/showproduct2')
+                        .then(response => response.json())
+                        .then(data => {
+                            for (let i = 0; i < data.length; i++) {
+                                show.innerHTML += `<div class="col my-3"><div class="iteme">
+           </div><div class="detail"><p><a href="cart?${data[i].Id}">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
 
-            })
-            .catch(error => console.error(error));
-    </script>
+                            }
+
+                        })
+                        .catch(error => console.error(error));
+
+
+                    footer.innerHTML = `<%- include('footer')%>`
+                    console.log("3")
+
+                } else if (type == "Drink") {
+                    fetch('http://rattana.app.ruk-com.cloud/showproduct3')
+                        .then(response => response.json())
+                        .then(data => {
+                            for (let i = 0; i < data.length; i++) {
+                                show.innerHTML += `<div class="col my-3"><div class="iteme">
+           </div><div class="detail"><p><a href="cart?${data[i].Id}">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
+
+                            }
+
+                        })
+                        .catch(error => console.error(error));
+                } else if (type == "personal items") {
+                    fetch('http://rattana.app.ruk-com.cloud/showproduct4')
+                        .then(response => response.json())
+                        .then(data => {
+                            for (let i = 0; i < data.length; i++) {
+                                show.innerHTML += `<div class="col my-3"><div class="iteme">
+           </div><div class="detail"><p><a href="cart?${data[i].Id}">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
+
+                            }
+
+                        })
+                        .catch(error => console.error(error));
+
+                    footer.innerHTML = `<%- include('footer')%>`
+
+
+                } else if (type == "General use") {
+                    fetch('http://rattana.app.ruk-com.cloud/showproduct5')
+                        .then(response => response.json())
+                        .then(data => {
+                            for (let i = 0; i < data.length; i++) {
+                                show.innerHTML += `<div class="col my-3"><div class="iteme">
+           </div><div class="detail"><p><a href="cart?${data[i].Id}">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
+
+                            }
+
+                        })
+                        .catch(error => console.error(error));
+
+                    footer.innerHTML = `<%- include('footer')%>`
+
+
+                } else {
+
+                    fetch('http://rattana.app.ruk-com.cloud/showproductall')
+                        .then(response => response.json())
+                        .then(data => {
+                            for (let i = 0; i < data.length; i++) {
+                                show.innerHTML += `<div class="col my-3"><div class="iteme">
+           </div><div class="detail"><p><a href="cart?${data[i].Id}">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
+
+                            }
+
+                        })
+                        .catch(error => console.error(error))
+
+                    footer.innerHTML = `<%- include('footer')%>`
+
+
+
+                }
+            }
+
+
+            const colors = ['g-green']
+            function ChangeColorfooter(color) {
+                var element1 = document.getElementById("Nav");
+                var element2 = document.getElementById("hoff");
+                element1.classList.remove(colors[0]);
+                element1.classList.add(color);
+                element2.classList.remove(colors[0]);
+                element2.classList.add(color);
+                colors.pop()
+                colors.push(color)
+            }
+
+
+
+        </script>
 
 
 
