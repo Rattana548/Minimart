@@ -45,21 +45,32 @@
                         </div>
             </form>
         </div>
-        <script>
-            const colors = ['g-green']
-            function ChangeColorfooter(color) {
+        <%- include('footer')%>
+            <script>
+
+                let colors = localStorage.getItem('color')
+                if (!colors) { localStorage.setItem('color', 'g-green') }
+
                 var element1 = document.getElementById("Nav");
                 var element2 = document.getElementById("hoff");
-                element1.classList.remove(colors[0]);
-                element1.classList.add(color);
-                element2.classList.remove(colors[0]);
-                element2.classList.add(color);
-                colors.pop()
-                colors.push(color)
-            }
-        </script>
+                element1.classList.add(localStorage.getItem('color'));
+                element2.classList.add(localStorage.getItem('color'));
 
-        <%- include('footer')%>
+                function ChangeColorfooter(color) {
+
+
+                    var element1 = document.getElementById("Nav");
+                    var element2 = document.getElementById("hoff");
+                    element1.classList.remove(localStorage.getItem('color'));
+                    element1.classList.add(color);
+                    element2.classList.remove(localStorage.getItem('color'));
+                    element2.classList.add(color);
+                    localStorage.removeItem('color');
+                    localStorage.setItem('color', color)
+                }
+            </script>
+
+
 </body>
 
 </html>
