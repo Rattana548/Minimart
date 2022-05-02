@@ -20,10 +20,10 @@ app.set('view engine', 'ejs');
 app.use(cookieSession({
     name: 'session',
     keys: ['key1', 'key2'],
-    maxAge: 3600 * 1000 
+    maxAge: 3600 * 1000
 }));
 
-app.use(express.static(path.join(__dirname,'/public')))
+app.use(express.static(path.join(__dirname, '/public')))
 
 
 
@@ -66,39 +66,52 @@ body('user_pass', 'The password must be of minimum length 6 characters').trim().
 
     const { user_name, user_pass, user_email, user_phone, user_status, user_id } = req.body;
 
-
+    
 
     bcrypt.hash(user_pass, 12).then((hash_pass) => {
-        if (!user_name || !user_email || !user_phone || !user_status || !user_id) {
-            if (req.session.Status == "admin") {
-                return res.redirect('Tableuser');
-            } else {
-                return res.redirect('profile');
+
+        if (req.session.Status == "admin") {
+
+            async function call1() {
+                await dbConnection.execute("UPDATE `users` SET `name`= ?,`email`=?,`phone`=? WHERE id=?", [user_name, user_email, user_phone, req.session.userID])
+                    .then(result => {
+
+                    }).catch(err => {
+                        if (err) throw err;
+                    });
             }
+
+            async function call2() {
+                await dbConnection.execute("UPDATE `users` SET `name`= ?,`email`=?,`phone`=?,`status`=? WHERE id=?", [user_name, user_email, user_phone, user_status, user_id])
+                    .then(result => {
+
+                    }).catch(err => {
+                        if (err) throw err;
+                    });
+            }
+            if(user_id){
+                 call2()
+            }else{
+                call1()
+            }
+            return res.redirect('Tableuser');
 
         } else {
-            if (req.session.Status == "admin") {
-                async function call() {
-                    await dbConnection.execute("UPDATE `users` SET `name`= ?,`email`=?,`phone`=?,`status`=? WHERE id=?", [user_name, user_email, user_phone, user_status, user_id])
-                        .then(result => {
-
-                        }).catch(err => {
-                            if (err) throw err;
-                        });
-                }
-                call()
-                return res.redirect('Tableuser');
-
-            }
             dbConnection.execute("UPDATE `users` SET `name`= ?,`email`=?,`phone`=?,`password`=? WHERE id=?", [user_name, user_email, user_phone, hash_pass, req.session.userID])
                 .then(result => {
                     req.session.passworD = user_pass
+                    console.log(user_pass)
                     res.redirect('profile');
                 }).catch(err => {
                     if (err) throw err;
                 });
-
         }
+
+
+      
+
+
+
 
 
 
@@ -209,7 +222,7 @@ app.get('/profile', ifNotLoggedin, (req, res, next) => {
                 email: rows[0].email,
                 phone: rows[0].phone,
                 status: req.session.Status,
-                S : "myself"
+                S: "myself"
             })
         })
 
@@ -325,14 +338,14 @@ app.get('/Cartt', ifNotLoggedin, (req, res, next) => {
 app.post('/buyaway', [body('id_product', '').trim().not().isEmpty(),
 body('id_product_id', '').trim().not().isEmpty(),
 body('amount', '').trim().not().isEmpty()], async (req, res) => {
-    const { id_product,id_product_id ,amount} = req.body
-    
+    const { id_product, id_product_id, amount } = req.body
+
     await dbConnection.execute("UPDATE `mn_cart` SET `Status`=? WHERE Id = ?", [1, id_product])
-    await dbConnection.execute("SELECT * FROM mn_product WHERE Id = ?",[id_product_id]).then(([rows])=>{
-        
+    await dbConnection.execute("SELECT * FROM mn_product WHERE Id = ?", [id_product_id]).then(([rows]) => {
+
         let amountt = rows[0].Amount
-        let amounttotal = amountt -  parseInt(amount)
-        dbConnection.execute("UPDATE `mn_product` SET `Amount`=? WHERE Id= ?",[amounttotal,id_product_id])
+        let amounttotal = amountt - parseInt(amount)
+        dbConnection.execute("UPDATE `mn_product` SET `Amount`=? WHERE Id= ?", [amounttotal, id_product_id])
     })
     res.redirect('/Cartt')
 })
@@ -361,21 +374,21 @@ app.post('/addtocart', [body('id_product', '').trim().not().isEmpty(),
 body('amount', '').trim().not().isEmpty(),
 body('price_product', '').trim().not().isEmpty(),
 ], async (req, res) => {
-   
-    const { id_product, amount,price_product } = req.body
-    
+
+    const { id_product, amount, price_product } = req.body
+
     await dbConnection.execute("SELECT * FROM `mn_product` WHERE `Id`=?", [id_product]).then(([rows]) => {
         req.session.total = rows[0].Price
     })
     const amounts = parseInt(amount)
     let total = 0
-    if(price_product){
+    if (price_product) {
         total = parseFloat(price_product)
-    }else{
+    } else {
         total = parseFloat(req.session.total)
     }
     const totals = total * amounts
-    
+
 
     await dbConnection.execute("INSERT INTO `mn_cart`(`Id_user`, `Id_product`, `Amount`, `Total`, `Status`) VALUES (?,?,?,?,?)", [req.session.userID, id_product, amount, totals, 0])
         .then(([rows]) => {
@@ -401,7 +414,7 @@ app.post('/carts', ifNotLoggedin, [body('id', '').trim().not().isEmpty()], (req,
                 productname: result[0].Name,
                 productprice: result[0].Price,
                 productdetail: result[0].Detail,
-                image:result[0].Picture,
+                image: result[0].Picture,
             });
 
         });
@@ -653,4 +666,4 @@ app.use('/', (req, res) => {
 });
 
 
-app.listen(11243, () => console.log("Server is Running..."));
+app.listen(3000, () => console.log("Server is Running..."));
