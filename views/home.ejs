@@ -70,20 +70,20 @@
                                 <div class="price-input">
                                     <div class="field">
                                         <span>Min</span>
-                                        <input type="number" class="input-min" />
+                                        <input type="number" class="input-min" value="2500">
                                     </div>
                                     <div class="separator">-</div>
                                     <div class="field">
                                         <span>Max</span>
-                                        <input type="number" class="input-max" />
+                                        <input type="number" class="input-max" value="7500">
                                     </div>
                                 </div>
                                 <div class="slider">
                                     <div class="progress"></div>
                                 </div>
                                 <div class="range-input">
-                                    <input type="range" class="range-min" min="0" max="10000" value="500" step="100" />
-                                    <input type="range" class="range-max" min="0" max="10000" value="1000" step="100" />
+                                    <input type="range" class="range-min" min="0" max="10000" value="2500" step="100">
+                                    <input type="range" class="range-max" min="0" max="10000" value="7500" step="100">
                                 </div>
                             </div>
 
@@ -124,6 +124,7 @@
                         <h2>Author Product</h2>
                     </div>
                     <div class="minitital my-5">
+
                         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
 
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
@@ -164,7 +165,63 @@
         <div id="footer"></div>
 
         <script>
+
+
+/*
+            const rangeInput = document.querySelectorAll(".range-input input"),
+                priceInput = document.querySelectorAll(".price-input input"),
+                range = document.querySelector(".slider .progress");
+            let priceGap = 1000;
+
+            priceInput.forEach(input => {
+                input.addEventListener("input", e => {
+                    let minPrice = parseInt(priceInput[0].value),
+                        maxPrice = parseInt(priceInput[1].value);
+
+                    if ((maxPrice - minPrice >= priceGap) && maxPrice <= rangeInput[1].max) {
+                        if (e.target.className === "input-min") {
+                            rangeInput[0].value = minPrice;
+                            range.style.left = ((minPrice / rangeInput[0].max) * 100) + "%";
+                        } else {
+                            rangeInput[1].value = maxPrice;
+                            range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+                        }
+                    }
+                });
+            });
+
+            rangeInput.forEach(input => {
+                input.addEventListener("input", e => {
+                    let minVal = parseInt(rangeInput[0].value),
+                        maxVal = parseInt(rangeInput[1].value);
+
+                    if ((maxVal - minVal) < priceGap) {
+                        if (e.target.className === "range-min") {
+                            rangeInput[0].value = maxVal - priceGap
+                        } else {
+                            rangeInput[1].value = minVal + priceGap;
+                        }
+                    } else {
+                        priceInput[0].value = minVal;
+                        priceInput[1].value = maxVal;
+                        range.style.left = ((minVal / rangeInput[0].max) * 100) + "%";
+                        range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+                    }
+                });
+            });
+
+
+
+
+*/
+
+
+
+
+
+
             localStorage.removeItem('productid');
+            localStorage.removeItem('productidsela');
             let showdirly = document.querySelector(".showdirly")
             let show = document.querySelector("#detail")
             let footer = document.querySelector("#footer")
@@ -173,24 +230,24 @@
                 .then(response => response.json())
                 .then(data => {
                     for (let i = 0; i < data.length; i++) {
-                        show.innerHTML += `<div class="col my-3"><div class="iteme">
-           </div><div class="detail"><p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
+                        show.innerHTML += `<div class="col my-3"><img alt="Image" src="/image/${data[i].Picture}" class="iteme">
+                        <div class="detail"><p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name} <br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
 
                     }
                     for (let y = 0; y < 3; y++) {
                         var product = (Math.floor(Math.random() * data.length + 1))
+                        console.log(product)
                         showdirly.innerHTML += `
 
                         <div class="col my-3">
-                            <div class="iteme"></div>
+                            <img alt="Image" src="/image/${data[product].Picture}" class="iteme">
                             <div class="detail">
-                                <p><a href="cart?${data[product].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[product].Name}</a></span></a></p>
+                                <p><a href="cart?${data[product].Id}#load" onclick="localStorage.setItem('productidsela',${data[product].Id} )">${data[product].Name}</a></span></a></p>
                                 </div>
                             </div>
                         `
                     }
 
-                    footer.innerHTML = `<%- include('footer')%>`
                 })
                 .catch(error => console.error(error));
 
@@ -203,7 +260,7 @@
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
-                                show.innerHTML += `<div class="col my-3"><div class="iteme">
+                                show.innerHTML += `<div class="col my-3"><img alt="Image" src="/image/${data[i].Picture}" class="iteme">
            </div><div class="detail"><p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
 
                             }
@@ -211,7 +268,7 @@
                         })
                         .catch(error => console.error(error));
 
-                    footer.innerHTML = `<%- include('footer')%>`
+
 
 
 
@@ -220,7 +277,7 @@
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
-                                show.innerHTML += `<div class="col my-3"><div class="iteme">
+                                show.innerHTML += `<div class="col my-3"><img alt="Image" src="/image/${data[i].Picture}" class="iteme">
            </div><div class="detail"><p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
 
                             }
@@ -238,7 +295,7 @@
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
-                                show.innerHTML += `<div class="col my-3"><div class="iteme">
+                                show.innerHTML += `<div class="col my-3"><img alt="Image" src="/image/${data[i].Picture}" class="iteme">
            </div><div class="detail"><p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
 
                             }
@@ -247,15 +304,14 @@
                         .catch(error => console.error(error));
 
 
-                    footer.innerHTML = `<%- include('footer')%>`
-                    console.log("3")
+
 
                 } else if (type == "Drink") {
                     fetch('http://rattana.app.ruk-com.cloud/showproduct3')
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
-                                show.innerHTML += `<div class="col my-3"><div class="iteme">
+                                show.innerHTML += `<div class="col my-3"><img alt="Image" src="/image/${data[i].Picture}" class="iteme">
            </div><div class="detail"><p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
 
                             }
@@ -267,7 +323,7 @@
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
-                                show.innerHTML += `<div class="col my-3"><div class="iteme">
+                                show.innerHTML += `<div class="col my-3"><img alt="Image" src="/image/${data[i].Picture}" class="iteme">
            </div><div class="detail"><p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
 
                             }
@@ -275,7 +331,7 @@
                         })
                         .catch(error => console.error(error));
 
-                    footer.innerHTML = `<%- include('footer')%>`
+
 
 
                 } else if (type == "General use") {
@@ -283,7 +339,7 @@
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
-                                show.innerHTML += `<div class="col my-3"><div class="iteme">
+                                show.innerHTML += `<div class="col my-3"><img alt="Image" src="/image/${data[i].Picture}" class="iteme">
            </div><div class="detail"><p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
 
                             }
@@ -291,7 +347,6 @@
                         })
                         .catch(error => console.error(error));
 
-                    footer.innerHTML = `<%- include('footer')%>`
 
 
                 } else {
@@ -300,7 +355,7 @@
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
-                                show.innerHTML += `<div class="col my-3"><div class="iteme">
+                                show.innerHTML += `<div class="col my-3"><img alt="Image" src="/image/${data[i].Picture}" class="iteme">
            </div><div class="detail"><p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
 
                             }
@@ -308,7 +363,7 @@
                         })
                         .catch(error => console.error(error))
 
-                    footer.innerHTML = `<%- include('footer')%>`
+
 
 
 
@@ -323,19 +378,14 @@
             if (!colors) { localStorage.setItem('color', 'g-green') }
 
             var element1 = document.getElementById("Nav");
-            var element2 = document.getElementById("hoff");
             element1.classList.add(localStorage.getItem('color'));
-            element2.classList.add(localStorage.getItem('color'));
 
             function ChangeColorfooter(color) {
 
 
                 var element1 = document.getElementById("Nav");
-                var element2 = document.getElementById("hoff");
                 element1.classList.remove(localStorage.getItem('color'));
                 element1.classList.add(color);
-                element2.classList.remove(localStorage.getItem('color'));
-                element2.classList.add(color);
                 localStorage.removeItem('color');
                 localStorage.setItem('color', color)
             }

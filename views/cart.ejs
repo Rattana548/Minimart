@@ -30,8 +30,7 @@
                     <div class="carousel slide" data-ride="carousel" id="carousel-1">
                         <div class="carousel-inner" role="listbox">
                             <div class="carousel-item active">
-                                <img class="img-thumbnail d-block"
-                                    src="https://preview.colorlib.com/theme/ogani/img/categories/cat-3.jpg.webp"
+                                <img class="img-thumbnail d-block" src="/image/<%= (locals.image) ? image : '' %>"
                                     style="margin:auto;">
                             </div>
 
@@ -45,9 +44,8 @@
                     </h4>
 
                     <div class="price"><span class="mr-2" id="priceproduct">
-                            <span>
-                                <strong></strong>
-                                <%= (locals.productprice) ? productprice : '' %> ฿</strong>
+                            <span id="sela">
+
                             </span>
                     </div>
 
@@ -60,12 +58,13 @@
                     <hr>
 
                     <div class="mt-3">
-                        <form method="POST" name="addtocart" action="addtocart">
+                        <form method="POST" name="addtocart" action="addtocart" id="PPrice">
                             <input type="text" name="id_product" value="" style="display:none;">
 
-                            Amount : <input type="number" value="1" data-decimals="2" min="0" max="100" step="1" name="amount" class="me-md-3">
-                        
+                            Amount : <input type="number" value="1" data-decimals="2" min="0" max="100" step="1"
+                                name="amount" class="me-md-3">
 
+                            <input type="text" name="price_product" value="" style="display:none;">
                             <input type="submit" class="btn btn-dark mr-3" type="button" value="ADD TO CART">
                         </form>
 
@@ -81,12 +80,8 @@
 
 
         <%- include('footer')%>
-            Maybe like this:
 
 
-            You can use type="number" or type="text".
-
-            And simple logic:
 
             <script>
 
@@ -96,11 +91,33 @@
 
             <script>
 
-                var queryString = localStorage.getItem('productid')
+
+
+                var queryString = localStorage.getItem('productid') || localStorage.getItem('productidsela')
+
+                if (localStorage.getItem('productidsela')) {
+                    document.querySelector("#sela").innerHTML = `<strong></strong>
+                                <span style="text-decoration: line-through;"><%= (locals.productprice) ? productprice : '' %></span> <%= (locals.productprice) ? (productprice-((productprice*20)/100)) : '' %>  ฿ </strong>
+                                `
+                    document.forms['PPrice']['price_product'].value = `<%= (locals.productprice) ? (productprice-((productprice*20)/100)) : '' %>`
+                } else {
+                    document.querySelector("#sela").innerHTML = `<strong></strong>
+                                <%= (locals.productprice) ? productprice : '' %> ฿ </strong>`
+                }
 
                 const productidstorage = queryString;
 
+
+
+
+                console.log(productidstorage)
+
+
                 document.forms['product']['id'].value = productidstorage;
+
+
+
+
 
                 document.forms['addtocart']['id_product'].value = productidstorage;
 

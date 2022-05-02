@@ -80,6 +80,8 @@
                                 <td>
                                     <form action="buyaway" method="POST" name="producttobuy">
                                         <input tyle="text" name="id_product" value="<%= result[i].Id %>" style="display:none">
+                                        <input tyle="text" name="id_product_id" value="<%= result[i].Id_product %>" style="display:none">
+                                        <input tyle="text" name="amount" value="<%= result[i].Amount %>" style="display:none">
                                         <input type="submit" class="btn material-icons text-success" value="buy">
                                     </form>
                                     <form action="delectaway" method="POST" name="producttodelect">
