@@ -29,27 +29,33 @@
 
                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
                                     onclick="showproductistype('All')" checked>
-                                <label class="btn-outline-primary" for="btnradio1" style="padding-top: 10px;" >All</label>
+                                <label class="btn-outline-primary" for="btnradio1"
+                                    style="padding-top: 10px;">All</label>
 
                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
                                     onclick="showproductistype('dry food')" style="padding-top: 10px;">
-                                <label class="btn-outline-primary" for="btnradio2"  style="padding-top: 10px;">Dry food</label>
+                                <label class="btn-outline-primary" for="btnradio2" style="padding-top: 10px;">Dry
+                                    food</label>
 
                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
                                     onclick="showproductistype('Fresh food')" style="padding-top: 10px;">
-                                <label class="btn-outline-primary" for="btnradio3"  style="padding-top: 10px;">Fresh food</label>
+                                <label class="btn-outline-primary" for="btnradio3" style="padding-top: 10px;">Fresh
+                                    food</label>
 
                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off"
                                     onclick="showproductistype('Drink')" style="padding-top: 10px;">
-                                <label class="btn-outline-primary" for="btnradio4"  style="padding-top: 10px;">Drink</label>
+                                <label class="btn-outline-primary" for="btnradio4"
+                                    style="padding-top: 10px;">Drink</label>
 
                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off"
                                     onclick="showproductistype('personal items')" style="padding-top: 10px;">
-                                <label class="btn-outline-primary" for="btnradio5"  style="padding-top: 10px;">Personal items</label>
+                                <label class="btn-outline-primary" for="btnradio5" style="padding-top: 10px;">Personal
+                                    items</label>
 
                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off"
                                     onclick="showproductistype('General use')" style="padding-top: 10px;">
-                                <label class="btn-outline-primary" for="btnradio6"  style="padding-top: 10px;">General use</label>
+                                <label class="btn-outline-primary" for="btnradio6" style="padding-top: 10px;">General
+                                    use</label>
 
                             </div>
 
@@ -134,53 +140,53 @@
         <script>
 
 
-/*
-            const rangeInput = document.querySelectorAll(".range-input input"),
-                priceInput = document.querySelectorAll(".price-input input"),
-                range = document.querySelector(".slider .progress");
-            let priceGap = 1000;
-
-            priceInput.forEach(input => {
-                input.addEventListener("input", e => {
-                    let minPrice = parseInt(priceInput[0].value),
-                        maxPrice = parseInt(priceInput[1].value);
-
-                    if ((maxPrice - minPrice >= priceGap) && maxPrice <= rangeInput[1].max) {
-                        if (e.target.className === "input-min") {
-                            rangeInput[0].value = minPrice;
-                            range.style.left = ((minPrice / rangeInput[0].max) * 100) + "%";
-                        } else {
-                            rangeInput[1].value = maxPrice;
-                            range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
-                        }
-                    }
-                });
-            });
-
-            rangeInput.forEach(input => {
-                input.addEventListener("input", e => {
-                    let minVal = parseInt(rangeInput[0].value),
-                        maxVal = parseInt(rangeInput[1].value);
-
-                    if ((maxVal - minVal) < priceGap) {
-                        if (e.target.className === "range-min") {
-                            rangeInput[0].value = maxVal - priceGap
-                        } else {
-                            rangeInput[1].value = minVal + priceGap;
-                        }
-                    } else {
-                        priceInput[0].value = minVal;
-                        priceInput[1].value = maxVal;
-                        range.style.left = ((minVal / rangeInput[0].max) * 100) + "%";
-                        range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
-                    }
-                });
-            });
-
-
-
-
-*/
+            /*
+                        const rangeInput = document.querySelectorAll(".range-input input"),
+                            priceInput = document.querySelectorAll(".price-input input"),
+                            range = document.querySelector(".slider .progress");
+                        let priceGap = 1000;
+            
+                        priceInput.forEach(input => {
+                            input.addEventListener("input", e => {
+                                let minPrice = parseInt(priceInput[0].value),
+                                    maxPrice = parseInt(priceInput[1].value);
+            
+                                if ((maxPrice - minPrice >= priceGap) && maxPrice <= rangeInput[1].max) {
+                                    if (e.target.className === "input-min") {
+                                        rangeInput[0].value = minPrice;
+                                        range.style.left = ((minPrice / rangeInput[0].max) * 100) + "%";
+                                    } else {
+                                        rangeInput[1].value = maxPrice;
+                                        range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+                                    }
+                                }
+                            });
+                        });
+            
+                        rangeInput.forEach(input => {
+                            input.addEventListener("input", e => {
+                                let minVal = parseInt(rangeInput[0].value),
+                                    maxVal = parseInt(rangeInput[1].value);
+            
+                                if ((maxVal - minVal) < priceGap) {
+                                    if (e.target.className === "range-min") {
+                                        rangeInput[0].value = maxVal - priceGap
+                                    } else {
+                                        rangeInput[1].value = minVal + priceGap;
+                                    }
+                                } else {
+                                    priceInput[0].value = minVal;
+                                    priceInput[1].value = maxVal;
+                                    range.style.left = ((minVal / rangeInput[0].max) * 100) + "%";
+                                    range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+                                }
+                            });
+                        });
+            
+            
+            
+            
+            */
 
 
 
@@ -227,8 +233,13 @@
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
-                                show.innerHTML += `<div class="col my-3"><img alt="Image" src="/image/${data[i].Picture}" class="iteme">
-           </div><div class="detail"><p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
+                                show.innerHTML += `
+                                <div class="col my-3">
+                                    <img alt="Image" src="/image/${data[i].Picture}" class="iteme">
+                                <div class="detail">
+                                <p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p>
+                                </div>
+                                </div>`
 
                             }
 
@@ -244,8 +255,13 @@
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
-                                show.innerHTML += `<div class="col my-3"><img alt="Image" src="/image/${data[i].Picture}" class="iteme">
-           </div><div class="detail"><p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
+                                show.innerHTML += `
+                                <div class="col my-3">
+                                    <img alt="Image" src="/image/${data[i].Picture}" class="iteme">
+                                <div class="detail">
+                                <p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p>
+                                </div>
+                                </div>`
 
                             }
 
@@ -262,8 +278,12 @@
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
-                                show.innerHTML += `<div class="col my-3"><img alt="Image" src="/image/${data[i].Picture}" class="iteme">
-           </div><div class="detail"><p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
+                                show.innerHTML += `  <div class="col my-3">
+                                    <img alt="Image" src="/image/${data[i].Picture}" class="iteme">
+                                <div class="detail">
+                                <p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p>
+                                </div>
+                                </div>`
 
                             }
 
@@ -278,8 +298,12 @@
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
-                                show.innerHTML += `<div class="col my-3"><img alt="Image" src="/image/${data[i].Picture}" class="iteme">
-           </div><div class="detail"><p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
+                                show.innerHTML += `  <div class="col my-3">
+                                    <img alt="Image" src="/image/${data[i].Picture}" class="iteme">
+                                <div class="detail">
+                                <p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p>
+                                </div>
+                                </div>`
 
                             }
 
@@ -290,9 +314,12 @@
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
-                                show.innerHTML += `<div class="col my-3"><img alt="Image" src="/image/${data[i].Picture}" class="iteme">
-           </div><div class="detail"><p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
-
+                                show.innerHTML += `  <div class="col my-3">
+                                    <img alt="Image" src="/image/${data[i].Picture}" class="iteme">
+                                <div class="detail">
+                                <p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p>
+                                </div>
+                                </div>`
                             }
 
                         })
@@ -306,9 +333,12 @@
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
-                                show.innerHTML += `<div class="col my-3"><img alt="Image" src="/image/${data[i].Picture}" class="iteme">
-           </div><div class="detail"><p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
-
+                                show.innerHTML += `  <div class="col my-3">
+                                    <img alt="Image" src="/image/${data[i].Picture}" class="iteme">
+                                <div class="detail">
+                                <p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p>
+                                </div>
+                                </div>`
                             }
 
                         })
@@ -322,9 +352,12 @@
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
-                                show.innerHTML += `<div class="col my-3"><img alt="Image" src="/image/${data[i].Picture}" class="iteme">
-           </div><div class="detail"><p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p></div></div>`
-
+                                show.innerHTML += `  <div class="col my-3">
+                                    <img alt="Image" src="/image/${data[i].Picture}" class="iteme">
+                                <div class="detail">
+                                <p><a href="cart?${data[i].Id}#load" onclick="localStorage.setItem('productid',${data[i].Id} )">${data[i].Name}<br> <strong>${data[i].Price} ฿</strong></a></p>
+                                </div>
+                                </div>`
                             }
 
                         })
