@@ -199,7 +199,7 @@
             let show = document.querySelector("#detail")
             let footer = document.querySelector("#footer")
 
-            fetch('http://rattana.app.ruk-com.cloud/showproductall')
+            fetch('http://localhost:3000/showproductall')
                 .then(response => response.json())
                 .then(data => {
                     for (let i = 0; i < data.length; i++) {
@@ -229,7 +229,7 @@
             function showproductistype(type) {
                 show.innerHTML = "";
                 if (type == "All") {
-                    fetch('http://rattana.app.ruk-com.cloud/showproductall')
+                    fetch('http://localhost:3000/showproductall')
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
@@ -251,7 +251,7 @@
 
 
                 } else if (type == "dry food") {
-                    fetch('http://rattana.app.ruk-com.cloud/showproduct1')
+                    fetch('http://localhost:3000/showproduct1')
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
@@ -274,7 +274,7 @@
 
                 }
                 else if (type == "Fresh food") {
-                    fetch('http://rattana.app.ruk-com.cloud/showproduct2')
+                    fetch('http://localhost:3000/showproduct2')
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
@@ -294,7 +294,7 @@
 
 
                 } else if (type == "Drink") {
-                    fetch('http://rattana.app.ruk-com.cloud/showproduct3')
+                    fetch('http://localhost:3000/showproduct3')
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
@@ -310,7 +310,7 @@
                         })
                         .catch(error => console.error(error));
                 } else if (type == "personal items") {
-                    fetch('http://rattana.app.ruk-com.cloud/showproduct4')
+                    fetch('http://localhost:3000/showproduct4')
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
@@ -329,7 +329,7 @@
 
 
                 } else if (type == "General use") {
-                    fetch('http://rattana.app.ruk-com.cloud/showproduct5')
+                    fetch('http://localhost:3000/showproduct5')
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
@@ -348,7 +348,7 @@
 
                 } else {
 
-                    fetch('http://rattana.app.ruk-com.cloud/showproductall')
+                    fetch('http://localhost:3000/showproductall')
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.length; i++) {
